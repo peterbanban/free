@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    tools:context="com.example.administrator.free.ActivityPage.MainActivity">
+
+    <android.support.v7.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:id="@+id/toolBar"
+        android:background="?attr/colorPrimary"
+        app:popupTheme="@style/ToolBarPopupTheme">
+        <!--android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"-->
+
+    </android.support.v7.widget.Toolbar>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/main_viewPage"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1.0"
+    />
+     <RadioGroup android:layout_width="match_parent"
+                 android:layout_height="52dp"
+                  android:id="@+id/main_RadioGroup"
+                 android:gravity="center_vertical"
+                 android:orientation="horizontal"
+                 android:layout_gravity="bottom"
+                 android:background="#fff"
+     >
+         <RadioButton style="@style/Radio_style"
+                      android:id="@+id/radio_btn1"
+                      android:drawableTop="@drawable/icon_item1"
+                      android:text="总览"
+                      android:checked="true"
+                      android:textColor="@color/radio_btn1"
+                      android:textAlignment="center"
+         />
+         <RadioButton style="@style/Radio_style"
+                      android:id="@+id/radio_btn2"
+                      android:text="进阶"
+                      android:textColor="@color/radio_btn1"
+                      android:textAlignment="center"
+                      android:drawableTop="@drawable/icon_item2"
+                      android:layout_height="match_parent"/>
+         <RadioButton style="@style/Radio_style"
+                      android:id="@+id/radio_btn3"
+                      android:text="碎片"
+                      android:textAlignment="center"
+                      android:textColor="@color/radio_btn1"
+                      android:drawableTop="@drawable/icon_item3"
+         />
+
+         <RadioButton style="@style/Radio_style"
+                      android:id="@+id/radio_btn4"
+                      android:textColor="@color/radio_btn1"
+                      android:text="修炼"
+                      android:drawableTop="@drawable/icon_item4"
+                      android:textAlignment="center"
+         />
+         
+     </RadioGroup>
+
+</LinearLayout>
