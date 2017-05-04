@@ -1,0 +1,12 @@
+<litepal>
+
+    <dbname value="ScreenMonitor"></dbname>
+    <version value="1"></version>
+    <list>
+        <mapping
+            class="com.example.administrator.free.DataBaseRelated.LockScreen">
+        </mapping>
+
+    </list>
+
+</litepal>

@@ -1,0 +1,38 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">#eee</item>
+        <item name="colorPrimaryDark">#000</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+    <style name="Radio_style">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:layout_weight">1.0</item>
+        <item name="android:button">@null</item>
+        <item name="android:background">@null</item>
+        <item name="android:layout_gravity">center_horizontal</item>
+        <item name="android:gravity">bottom</item>
+        <item name="android:paddingTop">2dp</item>
+        <item name="android:singleLine">true</item>
+    </style>
+
+    <!--给toolbar设置风格-->
+    <style name="ToolBarPopupTheme" parent="@style/ThemeOverlay.AppCompat.Light">
+        <item name="actionOverflowMenuStyle">@style/OverflowMenuStyle</item>
+        <item name="android:dropDownListViewStyle">@style/AppDropDownListStyle</item>
+    </style>
+    <!--防止menu覆盖toolbar-->
+    <style name="OverflowMenuStyle" parent="Widget.AppCompat.Light.PopupMenu.Overflow">
+        <item name="android:overlapAnchor">false</item>
+    </style>
+    <!--给menu设置分界线-->
+    <style name="AppDropDownListStyle" parent="Widget.AppCompat.ListView.DropDown">
+        <item name="android:showDividers">middle</item>
+        <item name="android:divider">@drawable/line</item>
+        <item name="android:dividerHeight">1dp</item>
+    </style>
+</resources>
