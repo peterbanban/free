@@ -42,7 +42,7 @@ public class LockScreen extends DataSupport{
     public Date getDateEnd() {
         return dateEnd;
     }
-    public long getInterval(){
+    public long getInterval(){              //记录一次解锁到岁锁屏的间隔时间
         return interval;
     }
 }

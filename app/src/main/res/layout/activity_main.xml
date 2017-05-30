@@ -24,6 +24,15 @@
         android:layout_height="0dp"
         android:layout_weight="1.0"
     />
+
+    <!--<com.example.administrator.free.ToolsHelper.ViewPageHelper-->
+        <!--android:id="@+id/main_viewPage"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="0dp"-->
+        <!--android:layout_weight="1.0"-->
+    <!--&gt;-->
+    <!--</com.example.administrator.free.ToolsHelper.ViewPageHelper>-->
+
      <RadioGroup android:layout_width="match_parent"
                  android:layout_height="52dp"
                   android:id="@+id/main_RadioGroup"

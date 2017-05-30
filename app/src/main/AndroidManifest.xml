@@ -2,14 +2,18 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="com.example.administrator.free">
 
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+
+
     <application
+        android:name="org.litepal.LitePalApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:name="org.litepal.LitePalApplication"
         android:theme="@style/AppTheme">
+
         <activity
             android:name=".ActivityPage.MainActivity"
             android:label="恋恋">
@@ -24,6 +28,14 @@
             android:name=".ToolsHelper.ScreenBroadcastReceiver"
             android:enabled="true"
             android:exported="true">
+        </receiver>
+        <receiver
+            android:name=".ToolsHelper.BootAutoStartReceiver"
+            android:enabled="true"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+            </intent-filter>
         </receiver>
     </application>
 

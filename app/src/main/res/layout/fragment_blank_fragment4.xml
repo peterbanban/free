@@ -1,17 +1,21 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
              xmlns:tools="http://schemas.android.com/tools"
              android:layout_width="match_parent"
              android:layout_height="match_parent"
+                android:clickable="true"
              tools:context="com.example.administrator.free.Fragment.BlankFragment4">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment"/>
+        android:text="锁屏时间折线图"/>
+
     <lecho.lib.hellocharts.view.LineChartView
+        android:layout_marginTop="20dp"
         android:layout_width="match_parent"
-        android:id="@+id/hello_chart"
-        android:layout_height="match_parent"
+        android:id="@+id/hello_chart_Line"
+        android:layout_height="200dp"
+        android:clickable="true"
     />
-</FrameLayout>
+</RelativeLayout>

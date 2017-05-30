@@ -3,6 +3,7 @@ package com.example.administrator.free.ToolsHelper;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.provider.Settings;
 import android.widget.Toast;
 
@@ -14,7 +15,6 @@ import java.util.Date;
 
 public class ScreenBroadcastReceiver extends BroadcastReceiver {
     private String action = null;
-
     @Override
     public void onReceive(Context context, Intent intent) {
         action = intent.getAction();
@@ -47,4 +47,5 @@ public class ScreenBroadcastReceiver extends BroadcastReceiver {
 
 
     }
+
 }

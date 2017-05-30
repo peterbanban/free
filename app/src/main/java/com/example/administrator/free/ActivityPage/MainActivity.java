@@ -18,12 +18,14 @@ import android.support.v7.view.menu.MenuBuilder;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RadioGroup.OnCheckedChangeListener;
 import android.widget.Toast;
 
+import com.example.administrator.free.DataBaseRelated.DateRecode;
 import com.example.administrator.free.DataBaseRelated.LockScreen;
 import com.example.administrator.free.Fragment.BlankFragment1;
 import com.example.administrator.free.Fragment.BlankFragment2;
@@ -31,6 +33,7 @@ import com.example.administrator.free.Fragment.BlankFragment3;
 import com.example.administrator.free.Fragment.BlankFragment4;
 import com.example.administrator.free.R;
 import com.example.administrator.free.ToolsHelper.ScreenBroadcastReceiver;
+import com.example.administrator.free.ToolsHelper.ViewPageHelper;
 
 import org.litepal.LitePal;
 import org.litepal.crud.DataSupport;
@@ -40,7 +43,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements OnCheckedChangeListener {
-    private ViewPager mainViewPager;
+
+    private  ViewPager mainViewPager;
     private  RadioGroup mainRadioGroup;
     RadioButton mainBtn1;
     RadioButton mainBtn2;
@@ -56,8 +60,10 @@ public class MainActivity extends AppCompatActivity implements OnCheckedChangeLi
         setSupportActionBar(toolbar);
         InitView();                          //初始化控件
         InitViewPager();                     //初始化pageView和fragment
+//        ScreenBroadcastReceiver.startScreenBroadCastReceiver();
         startScreenBroadCastReceiver();      //注册监控屏幕的广播
-        LitePal.getDatabase();
+        LitePal.getDatabase();               //创建数据库
+
     }
 
     private void InitView() {
@@ -76,6 +82,7 @@ public class MainActivity extends AppCompatActivity implements OnCheckedChangeLi
         Fragment btn2Fragment=new BlankFragment2();
         Fragment btn3Fragment=new BlankFragment3();
         Fragment btn4Fragment=new BlankFragment4();
+
 
         fragmentList.add(btn1Fragment);
         fragmentList.add(btn2Fragment);
@@ -137,11 +144,10 @@ public class MainActivity extends AppCompatActivity implements OnCheckedChangeLi
                     break;
                 case 3:
                     mainRadioGroup.check(R.id.radio_btn4);
-                    List<LockScreen> localList=DataSupport.findAll(LockScreen.class);
-                    for ( LockScreen a:localList){
-                        Toast.makeText(MainActivity.this,a.getInterval()+" "+a.getDateStart(),Toast.LENGTH_LONG).show();
-                    }
                     break;
+                default:
+                    break;
+
             }
         }
 
@@ -196,7 +202,7 @@ public class MainActivity extends AppCompatActivity implements OnCheckedChangeLi
         return true;
     }
 
-    @Override   //此方法动态更新menu, 通过反射 用于动态显示图标
+    @Override   //此方法动态更新menu, 通过反射 用于动态显示menu的图标
     protected boolean onPrepareOptionsPanel(View view, Menu menu) {
          if(menu!=null){
              if(menu.getClass()== MenuBuilder.class){  //MenuBuilder类有设置menu的方法 setIconEnable被设置为了false
@@ -224,6 +230,6 @@ public class MainActivity extends AppCompatActivity implements OnCheckedChangeLi
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        unregisterReceiver(screenBroadcastReceiver);//动态注册的广播要销毁掉
+//         unregisterReceiver(screenBroadcastReceiver);//动态注册的广播要销毁掉
     }
 }
