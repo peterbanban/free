@@ -2,7 +2,8 @@
              xmlns:tools="http://schemas.android.com/tools"
              android:layout_width="match_parent"
              android:layout_height="match_parent"
-                android:clickable="true"
+             android:clickable="true"
+             android:orientation="vertical"
              tools:context="com.example.administrator.free.Fragment.BlankFragment4">
 
     <!-- TODO: Update blank fragment layout -->
@@ -17,5 +18,61 @@
         android:id="@+id/hello_chart_Line"
         android:layout_height="200dp"
         android:clickable="true"
+    />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tip_long"
+        android:layout_below="@id/hello_chart_Line"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="15dp"
+        android:text="今日最长锁屏时间"
+    />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tip_short"
+        android:layout_below="@id/tip_long"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="15dp"
+        android:text="今日最短锁屏时间"
+    />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tip_most"
+        android:layout_below="@id/tip_short"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="15dp"
+        android:text="近期最多锁屏次数"
+    />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tip_less"
+        android:layout_below="@id/tip_most"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="15dp"
+        android:text="近期最多锁屏次数"
+    />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tip_Text4"
+        android:layout_below="@id/tip_less"
+        android:layout_marginTop="35dp"
+        android:layout_centerHorizontal="true"
+        android:textSize="16sp"
+        android:text="放下手机 锁屏挑战 "
+    />
+    <Button
+            android:id="@+id/btn_start"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tip_Text4"
+            android:layout_centerHorizontal="true"
+            android:textSize="15dp"
+            android:layout_marginTop="25dp"
+            android:text="开始挑战"
     />
 </RelativeLayout>

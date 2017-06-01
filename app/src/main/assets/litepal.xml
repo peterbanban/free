@@ -1,7 +1,7 @@
 <litepal>
 
     <dbname value="ScreenMonitor"></dbname>
-    <version value="2"></version>
+    <version value="3"></version>
     <list>
         <mapping
             class="com.example.administrator.free.DataBaseRelated.LockScreen">

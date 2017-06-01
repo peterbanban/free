@@ -20,6 +20,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RadioGroup.OnCheckedChangeListener;
@@ -97,7 +98,6 @@ public class MainActivity extends AppCompatActivity implements OnCheckedChangeLi
         mainViewPager.addOnPageChangeListener(new MyListener() );
     //    mainViewPager.setOn PageChangeListener(new MyListener() );
     }
-
     public class MyFragmentAdapter extends FragmentPagerAdapter{
         ArrayList<Fragment>list;
 
@@ -115,6 +115,12 @@ public class MainActivity extends AppCompatActivity implements OnCheckedChangeLi
         public int getCount() {
             return list.size();
         }
+
+        @Override
+        public void destroyItem(ViewGroup container, int position, Object object) {
+            super.destroyItem(container, position, object);
+        }
+
     }
 
     public class MyListener implements OnPageChangeListener{
