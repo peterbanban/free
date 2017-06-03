@@ -35,4 +35,9 @@
         <item name="android:divider">@drawable/line</item>
         <item name="android:dividerHeight">1dp</item>
     </style>
+    <!--设置activity为dialog-->
+    <style name="ActivityDialog" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+    </style>
 </resources>

@@ -8,10 +8,12 @@ import android.provider.Settings;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.example.administrator.free.ActivityPage.LockScreenDisplayActivity;
 import com.example.administrator.free.DataBaseRelated.DateRecode;
 import com.example.administrator.free.DataBaseRelated.LockScreen;
 
 import org.litepal.crud.DataSupport;
+import org.litepal.tablemanager.typechange.DateOrm;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -43,13 +45,10 @@ public class ScreenBroadcastReceiver extends BroadcastReceiver {
             List<DateRecode> listRecode=DataSupport
                     .where("dates=?",str1)
                     .find(DateRecode.class);
-            Log.d("12","即将进入解锁");
             if (listRecode.size()>0) {
-                Log.d("12","进入解锁");
                 for (DateRecode dateRecode : listRecode) {
                         dateRecode.setCounts(dateRecode.getCounts() + 1);
                         dateRecode.save();
-                    Log.d(dateRecode.getDates()+"/"+dateRecode.getCounts()+"/","解锁");
                 }
             } else{
                    DateRecode dateRecode=new DateRecode();
@@ -64,12 +63,21 @@ public class ScreenBroadcastReceiver extends BroadcastReceiver {
 
         else if (Intent.ACTION_SCREEN_OFF.equals(action))
         {
-             //锁屏
+
+            /**
+             * 锁屏界面显示
+             */
+            Intent lockIntent=new Intent(context, LockScreenDisplayActivity.class);
+            lockIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            context.startActivity(lockIntent);
+
+
             long id= DataSupport.max(LockScreen.class,"id",long.class);
             if(id>0){
             LockScreen beforeDate=DataSupport.find(LockScreen.class,id);
             Date beforeStart=beforeDate.getDateStart();
             beforeDate.setDateEnd(new Date(System.currentTimeMillis()));
+                Log.d(System.currentTimeMillis()+"",beforeDate.getDateEnd().getTime()+"");
             Time1=System.currentTimeMillis()-beforeStart.getTime();
             beforeDate.setInterval(Time1); //设置间隔时间
             beforeDate.save();
@@ -87,9 +95,23 @@ public class ScreenBroadcastReceiver extends BroadcastReceiver {
                     if(dateRecode.getLessTime()>Time1)
                         dateRecode.setLessTime(Time1);
                   dateRecode.save();
-                    Log.d("时长",""+dateRecode.getMostTime()+"/"+Time1);
                 }
+            }else
+            {
+                 String str2=format.format(System.currentTimeMillis()-24*60*60*1000);
+                List<DateRecode> listRecode0=DataSupport
+                        .where("dates=?",str2)
+                        .find(DateRecode.class);
+                if (listRecode0.size()>0){
+                    for (DateRecode dateRecode0:listRecode0){
+                        if (dateRecode0.getMostTime()<Time1)
+                            dateRecode0.setMostTime(Time1);
+                        if(dateRecode0.getLessTime()>Time1)
+                            dateRecode0.setLessTime(Time1);
+                        dateRecode0.save();
+                    }
 
+                }
             }
         }
     }

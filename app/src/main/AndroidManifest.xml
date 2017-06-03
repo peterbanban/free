@@ -36,7 +36,30 @@
             </intent-filter>
         </receiver>
 
-        <activity android:name=".ActivityPage.LockScreenActivity">
+        <activity
+            android:name=".ActivityPage.LockScreenActivity"
+            android:theme="@style/ActivityDialog">
+        </activity>
+
+        <receiver
+            android:name=".ToolsHelper.DeviceAdminReceiverHelper"
+            android:permission="android.permission.BIND_DEVICE_ADMIN">
+            <meta-data
+                android:name="android.app.device_admin"
+                android:resource="@xml/device_admin"/>
+
+            <intent-filter>
+                <action android:name="android.app.action.DEVICE_ADMIN_ENABLED"/>
+            </intent-filter>
+        </receiver>
+
+        <activity
+            android:name=".ActivityPage.LockScreenDisplayActivity"
+            android:excludeFromRecents="true"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:taskAffinity="com.package.name.LockScreenDisplayActivity"
+        >
         </activity>
     </application>
 

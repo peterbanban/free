@@ -1,10 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.example.administrator.free.ActivityPage.LockScreenActivity">
 
-</android.support.constraint.ConstraintLayout>
+
+    <Button
+        android:id="@+id/timeEnd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="选择结束时间"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="20dp"
+    />
+
+    <TextView
+        android:id="@+id/endDisplay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="我是默认时间显示"
+        android:textSize="18dp"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@id/timeEnd"
+    />
+    <Button
+        android:id="@+id/timeStart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="选择开始时间"
+        android:layout_alignLeft="@id/timeEnd"
+       android:layout_above="@id/timeEnd"
+    />
+    <TextView
+        android:id="@+id/startDisplay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="我是默认时间显示"
+        android:layout_toRightOf="@id/timeStart"
+        android:layout_alignBottom="@id/timeStart"
+        android:textSize="18dp"
+        android:layout_marginBottom="13dp"
+    />
+    <Button
+        android:id="@+id/setOver"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="开启锁屏挑战"
+        android:layout_below="@id/endDisplay"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="25dp"
+    />
+</RelativeLayout>

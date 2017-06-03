@@ -1,4 +1,6 @@
 package com.example.administrator.free.Fragment;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -9,7 +11,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.administrator.free.ActivityPage.LockScreenActivity;
 import com.example.administrator.free.DataBaseRelated.DateRecode;
+import com.example.administrator.free.DataBaseRelated.LockScreen;
 import com.example.administrator.free.R;
 import com.example.administrator.free.ToolsHelper.HelloChartsHelper;
 import org.litepal.crud.DataSupport;
@@ -67,9 +71,14 @@ public class BlankFragment4 extends Fragment {
             }
 
         });
+
+        //从fragment跳转到activity
         btnStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Context context=getActivity();
+                Intent intent1=new Intent(context, LockScreenActivity.class);
+                context.startActivity(intent1);
 
             }
         });
@@ -106,13 +115,17 @@ public class BlankFragment4 extends Fragment {
 
         if (listRecode.size() > 0) {
             for (DateRecode dateRecode : listRecode) {
-                if(dateRecode.getLessTime()<60000){
-                     txtLong.setText("今日连续使用手机最长时间为："+dateRecode.getMostTime()/1000+"  min");
+                if(dateRecode.getMostTime()<60000){
+                     txtLong.setText("今日连续使用手机最长时间为："+dateRecode.getMostTime()/1000+"  s");
                      txtShort.setText("今日连续使用手机最短时间为："+dateRecode.getLessTime()/1000+"  s");
                 }
-                else {
+                else if (dateRecode.getLessTime()<60000&&dateRecode.getMostTime()>=60000){
                     txtLong.setText("今日连续使用手机最长时间为："+dateRecode.getMostTime()/60000+"  min");
-                    txtShort.setText("今日连续使用手机最短时间为：" + dateRecode.getLessTime() / 60000 + "  min");
+                    txtShort.setText("今日连续使用手机最短时间为："+dateRecode.getLessTime()/1000+"  s");
+                }
+                else{
+                    txtLong.setText("今日连续使用手机最长时间为："+dateRecode.getMostTime()/60000+"  min");
+                    txtShort.setText("今日连续使用手机最短时间为：" + dateRecode.getLessTime()/60000 + "  min");
                 }
             }
         }
