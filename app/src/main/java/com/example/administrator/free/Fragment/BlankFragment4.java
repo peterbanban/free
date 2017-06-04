@@ -3,7 +3,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -13,7 +12,6 @@ import android.widget.TextView;
 
 import com.example.administrator.free.ActivityPage.LockScreenActivity;
 import com.example.administrator.free.DataBaseRelated.DateRecode;
-import com.example.administrator.free.DataBaseRelated.LockScreen;
 import com.example.administrator.free.R;
 import com.example.administrator.free.ToolsHelper.HelloChartsHelper;
 import org.litepal.crud.DataSupport;
@@ -30,7 +28,7 @@ public class BlankFragment4 extends Fragment {
     TextView txtShort;
     TextView txtMost;
     TextView txtLess;
-    Button btnStart;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -41,7 +39,6 @@ public class BlankFragment4 extends Fragment {
          txtShort= (TextView) view.findViewById(R.id.tip_short);
          txtMost= (TextView) view.findViewById(R.id.tip_most);
          txtLess= (TextView) view.findViewById(R.id.tip_less);
-         btnStart= (Button) view.findViewById(R.id.btn_start);
         dataInit();
         HelloChartsHelper chartsHelper=new HelloChartsHelper(chartDate,source,lineChart);
         chartsHelper.getAxisXLables();    //获取x轴的标签
@@ -73,19 +70,9 @@ public class BlankFragment4 extends Fragment {
         });
 
         //从fragment跳转到activity
-        btnStart.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Context context=getActivity();
-                Intent intent1=new Intent(context, LockScreenActivity.class);
-                context.startActivity(intent1);
-
-            }
-        });
         return view;
 
     }
-
 
     private void dataInit() {
         //计算每天锁屏次数并显示出来

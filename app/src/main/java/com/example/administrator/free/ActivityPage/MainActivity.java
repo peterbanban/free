@@ -1,47 +1,37 @@
 package com.example.administrator.free.ActivityPage;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.support.annotation.IdRes;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 //import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.view.menu.MenuBuilder;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RadioGroup.OnCheckedChangeListener;
-import android.widget.Toast;
 
-import com.example.administrator.free.DataBaseRelated.DateRecode;
-import com.example.administrator.free.DataBaseRelated.LockScreen;
 import com.example.administrator.free.Fragment.BlankFragment1;
 import com.example.administrator.free.Fragment.BlankFragment2;
 import com.example.administrator.free.Fragment.BlankFragment3;
 import com.example.administrator.free.Fragment.BlankFragment4;
 import com.example.administrator.free.R;
 import com.example.administrator.free.ToolsHelper.ScreenBroadcastReceiver;
-import com.example.administrator.free.ToolsHelper.ViewPageHelper;
 
 import org.litepal.LitePal;
-import org.litepal.crud.DataSupport;
 
 import java.lang.reflect.Method;
 import java.util.ArrayList;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements OnCheckedChangeListener {
 
@@ -87,8 +77,8 @@ public class MainActivity extends AppCompatActivity implements OnCheckedChangeLi
 
         fragmentList.add(btn1Fragment);
         fragmentList.add(btn2Fragment);
-        fragmentList.add(btn3Fragment);
         fragmentList.add(btn4Fragment);
+        fragmentList.add(btn3Fragment);
 
         //设置ViewPage适配器
         mainViewPager.setAdapter(new  MyFragmentAdapter(getSupportFragmentManager(),fragmentList));
@@ -236,6 +226,6 @@ public class MainActivity extends AppCompatActivity implements OnCheckedChangeLi
     @Override
     protected void onDestroy() {
         super.onDestroy();
-//         unregisterReceiver(screenBroadcastReceiver);//动态注册的广播要销毁掉
+     //    unregisterReceiver(screenBroadcastReceiver);//动态注册的广播要销毁掉
     }
 }

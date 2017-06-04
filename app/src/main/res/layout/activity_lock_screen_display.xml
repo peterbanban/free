@@ -1,11 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<android.support.v7.widget.LinearLayoutCompat
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:background="@drawable/bizhi"
     tools:context="com.example.administrator.free.ActivityPage.LockScreenDisplayActivity">
 
-</RelativeLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_countdown"
+        android:text="倒计时"
+        android:textColor="#ff50f0"
+        android:textSize="40sp"
+        android:layout_marginTop="50dp"
+        android:layout_gravity="center"
+    />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_timeStart"
+        android:text="开始时间"
+        android:textColor="#ff50f0"
+        android:layout_marginTop="60dp"
+        android:textSize="15sp"
+        android:layout_marginLeft="50dp"
+
+    />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_timeEnd"
+        android:text="结束时间"
+        android:textColor="#ff50f0"
+        android:textSize="15sp"
+        android:layout_marginLeft="50dp"
+    />
+   <RelativeLayout
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       android:layout_marginBottom="60dp"
+       android:id="@+id/rl_1"
+   >
+       <TextView
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:id="@+id/tv_congratulate"
+           android:layout_centerHorizontal="true"
+           android:layout_marginTop="120dp"
+           android:textColor="#ff0000"
+           android:textSize="30sp"
+       />
+       <Button
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:id="@+id/btn_exit"
+           android:text="退出挑战"
+           android:layout_centerHorizontal="true"
+           android:layout_alignParentBottom="true"
+       />
+   </RelativeLayout>
+
+
+</android.support.v7.widget.LinearLayoutCompat>

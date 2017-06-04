@@ -1,6 +1,7 @@
 package com.example.administrator.free.ActivityPage;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.TimePickerDialog;
@@ -25,6 +26,7 @@ import android.widget.TimePicker;
 import com.example.administrator.free.DataBaseRelated.LockScreen;
 import com.example.administrator.free.R;
 import com.example.administrator.free.ToolsHelper.DeviceAdminReceiverHelper;
+import com.example.administrator.free.ToolsHelper.FlagHelper;
 import com.example.administrator.free.ToolsHelper.TimePickerHelper;
 
 import org.litepal.tablemanager.typechange.BlobOrm;
@@ -32,7 +34,7 @@ import org.litepal.tablemanager.typechange.BlobOrm;
 import java.util.Calendar;
 
 public class LockScreenActivity extends AppCompatActivity implements View.OnClickListener {
-    public static int mHourStart, mMinuteStart,mHourEnd,mMinuteEnd;
+    public static int mHourStart=-1, mMinuteStart=-1,mHourEnd=-1,mMinuteEnd=-1;
     Button btnStart,btnEnd,btnOnStart;
     TextView startDisplay,endDisplay;
     private  DevicePolicyManager devicePolicyManager=null;
@@ -88,6 +90,7 @@ public class LockScreenActivity extends AppCompatActivity implements View.OnClic
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.timeStart:{
+                //选择开始时间
                 new TimePickerHelper(LockScreenActivity.this, new TimePickerHelper.TimePickerListener() {
                     @Override
                     public void onHourPicked(int hour) {
@@ -100,10 +103,12 @@ public class LockScreenActivity extends AppCompatActivity implements View.OnClic
                         mMinuteStart = minute;
                         startDisplay.setText("  " + String.valueOf(mHourStart) + ":" + mMinuteStart);
                     }
+
                 });
                  break;
             }
             case R.id.timeEnd:{
+                //选择结束时间
                 new TimePickerHelper(LockScreenActivity.this, new TimePickerHelper.TimePickerListener() {
                     @Override
                     public void onHourPicked(int hour) {
@@ -120,17 +125,40 @@ public class LockScreenActivity extends AppCompatActivity implements View.OnClic
                             endDisplay.setText("  " + String.valueOf(mHourEnd) + ":" + mMinuteEnd);
                             endDisplay.setTextColor(Color.parseColor("#808080"));
                         }
+
                     }
                 });
                 break;
             }
             case R.id.setOver:{
+                //提交
+                //传递数据
+                FlagHelper.startTime=String.valueOf(mHourStart)+":"+mMinuteStart;
+                FlagHelper.endTime=String.valueOf(mHourEnd)+":"+mMinuteEnd;
+                if (mHourEnd==-1||mHourStart==-1)
+                {
+                    startDisplay.setText("请重新选择时间");
+                    endDisplay.setText("请重新选择时间");
+                    break;
+                }
+
+                if((mMinuteEnd-mMinuteStart)>0){
+                    FlagHelper.countdownHour=mHourEnd-mHourStart;
+                    FlagHelper.countdownMinute=mMinuteEnd-mMinuteStart;
+                }
+                else {
+                    FlagHelper.countdownHour=mHourEnd-mHourStart-1;
+                    FlagHelper.countdownMinute=mMinuteEnd-mMinuteStart+60;
+                }
+
                 devicePolicyManager= (DevicePolicyManager) getSystemService(DEVICE_POLICY_SERVICE);
                 if (devicePolicyManager.isAdminActive(DeviceAdminReceiverHelper.getCname(this))){
+                    FlagHelper.flag=1;
                     devicePolicyManager.lockNow();
                     finish();
                 }else
                     startAddDeviceAdmin();
+                    FlagHelper.flag=1;
                  break;
             }
 
