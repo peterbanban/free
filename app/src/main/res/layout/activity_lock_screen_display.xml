@@ -12,11 +12,21 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:id="@+id/tv_countdown0"
+        android:text="倒计时"
+        android:textColor="#ff50f0"
+        android:textSize="30sp"
+        android:layout_marginTop="30dp"
+        android:layout_gravity="center"
+    />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:id="@+id/tv_countdown"
         android:text="倒计时"
         android:textColor="#ff50f0"
         android:textSize="40sp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="20dp"
         android:layout_gravity="center"
     />
     <TextView
@@ -27,7 +37,7 @@
         android:textColor="#ff50f0"
         android:layout_marginTop="60dp"
         android:textSize="15sp"
-        android:layout_marginLeft="50dp"
+        android:layout_gravity="center"
 
     />
     <TextView
@@ -37,8 +47,7 @@
         android:text="结束时间"
         android:textColor="#ff50f0"
         android:textSize="15sp"
-        android:layout_marginLeft="50dp"
-    />
+        android:layout_gravity="center"/>
    <RelativeLayout
        android:layout_width="match_parent"
        android:layout_height="match_parent"

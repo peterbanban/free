@@ -1,10 +1,9 @@
-package com.example.administrator.free.ToolsHelper;
+package com.example.administrator.free.ReceiverHelper;
 
 import android.app.admin.DeviceAdminReceiver;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
-import android.support.v4.content.ContextCompat;
 
 /**
  * Created by Administrator on 2017/06/03.

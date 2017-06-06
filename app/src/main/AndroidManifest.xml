@@ -23,12 +23,12 @@
         </activity>
 
         <receiver
-            android:name=".ToolsHelper.ScreenBroadcastReceiver"
+            android:name=".ReceiverHelper.ScreenBroadcastReceiver"
             android:enabled="true"
             android:exported="true">
         </receiver>
         <receiver
-            android:name=".ToolsHelper.BootAutoStartReceiver"
+            android:name=".ReceiverHelper.BootAutoStartReceiver"
             android:enabled="true"
             android:exported="false">
             <intent-filter>
@@ -38,11 +38,12 @@
 
         <activity
             android:name=".ActivityPage.LockScreenActivity"
+            android:label="设置"
             android:theme="@style/ActivityDialog">
         </activity>
 
         <receiver
-            android:name=".ToolsHelper.DeviceAdminReceiverHelper"
+            android:name=".ReceiverHelper.DeviceAdminReceiverHelper"
             android:permission="android.permission.BIND_DEVICE_ADMIN">
             <meta-data
                 android:name="android.app.device_admin"
@@ -58,9 +59,14 @@
             android:excludeFromRecents="true"
             android:exported="false"
             android:screenOrientation="portrait"
-            android:taskAffinity="com.package.name.LockScreenDisplayActivity"
-        >
+            android:taskAffinity="com.package.name.LockScreenDisplayActivity">
         </activity>
+
+        <service
+            android:name=".ServiceHelper.MonitorService"
+            android:enabled="true"
+            android:exported="true">
+        </service>
     </application>
 
 </manifest>

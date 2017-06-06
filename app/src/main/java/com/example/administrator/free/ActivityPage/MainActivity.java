@@ -26,7 +26,7 @@ import com.example.administrator.free.Fragment.BlankFragment2;
 import com.example.administrator.free.Fragment.BlankFragment3;
 import com.example.administrator.free.Fragment.BlankFragment4;
 import com.example.administrator.free.R;
-import com.example.administrator.free.ToolsHelper.ScreenBroadcastReceiver;
+import com.example.administrator.free.ReceiverHelper.ScreenBroadcastReceiver;
 
 import org.litepal.LitePal;
 
@@ -197,6 +197,7 @@ public class MainActivity extends AppCompatActivity implements OnCheckedChangeLi
         }
         return true;
     }
+
 
     @Override   //此方法动态更新menu, 通过反射 用于动态显示menu的图标
     protected boolean onPrepareOptionsPanel(View view, Menu menu) {

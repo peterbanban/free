@@ -1,4 +1,4 @@
-package com.example.administrator.free.ToolsHelper;
+package com.example.administrator.free.ReceiverHelper;
 
 import android.app.Notification;
 import android.app.NotificationManager;
@@ -8,11 +8,9 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.support.v4.app.NotificationCompat;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class BootAutoStartReceiver extends BroadcastReceiver {
 
+    //开机自启并启用监听屏幕的广播
     ScreenBroadcastReceiver screenBroadcastReceiver;
  public final  String action_boot="android.intent.action.BOOT_COMPLETED";
 
@@ -26,22 +24,31 @@ public class BootAutoStartReceiver extends BroadcastReceiver {
                     .setContentText("成功了")
                     .setWhen(System.currentTimeMillis())
                     .build();
-            manager.notify(2,notification);
+            manager.notify(1,notification);
 
+            //启动app包名
+            Intent newIntent= context.getPackageManager().getLaunchIntentForPackage("package com.example.administrator.free");
+            context.startActivity(newIntent);
 
 
             //注册监 控屏幕的广播
             screenBroadcastReceiver=new ScreenBroadcastReceiver();
-            startScreenBroadCastReceiver();
+           // startScreenBroadCastReceiver();
+            IntentFilter filter=new IntentFilter();
+            filter.addAction(Intent.ACTION_SCREEN_OFF);
+            filter.addAction(Intent.ACTION_SCREEN_ON);
+            filter.addAction(Intent.ACTION_USER_PRESENT);
+           context.registerReceiver(screenBroadcastReceiver,filter);
 
 
         }
+
     }
-    private void startScreenBroadCastReceiver() {
-        IntentFilter filter=new IntentFilter();
-        filter.addAction(Intent.ACTION_SCREEN_OFF);
-        filter.addAction(Intent.ACTION_SCREEN_ON);
-        filter.addAction(Intent.ACTION_USER_PRESENT);
-       AppContext.getContext().registerReceiver(screenBroadcastReceiver,filter);
-    }
+   // private void startScreenBroadCastReceiver() {
+//        IntentFilter filter=new IntentFilter();
+//        filter.addAction(Intent.ACTION_SCREEN_OFF);
+//        filter.addAction(Intent.ACTION_SCREEN_ON);
+//        filter.addAction(Intent.ACTION_USER_PRESENT);
+//       AppContext.getContext().registerReceiver(screenBroadcastReceiver,filter);
+//    }
 }

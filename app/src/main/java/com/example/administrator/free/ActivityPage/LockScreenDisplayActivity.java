@@ -5,6 +5,7 @@ import android.os.Handler;
 import android.support.annotation.UiThread;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,7 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 
 import com.example.administrator.free.R;
+import com.example.administrator.free.ToolsHelper.CountDownHelper;
 import com.example.administrator.free.ToolsHelper.FlagHelper;
 
 public class LockScreenDisplayActivity extends AppCompatActivity {
@@ -23,12 +25,9 @@ public class LockScreenDisplayActivity extends AppCompatActivity {
     TextView tvEnd;
     TextView tvCountdown;
     TextView tvCongratulation;
-    Handler handler=new Handler();
+    CountDownHelper countDownHelper;
     int cdm,cdh;
     int num ;
-    int h;
-    int k;
-    int j = 59;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,6 +44,7 @@ public class LockScreenDisplayActivity extends AppCompatActivity {
         btnExit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                 countDownHelper.cancel();
                 finish();
             }
         });
@@ -56,30 +56,9 @@ public class LockScreenDisplayActivity extends AppCompatActivity {
         tvStart.setText("开始时间   "+startTime);
         tvEnd.setText("结束时间   "+endTime);
         num = 3600 * cdh + 60 * cdm;
-        handler.postDelayed(runnable,1000);
+        countDownHelper= new CountDownHelper(num*1000,1000,tvCountdown);
+        countDownHelper.start();
     }
-
-    //考虑一个问题，每次进入解锁此页面都要初始化一次，会影响num的值吗 ，还有对进程的影响！！！！
-
-    //倒计时
-    Runnable runnable=new Runnable() {
-        @Override
-        public void run() {
-            for (int i = num; i >= 0; i--) {
-                h = i % 3600;
-                k = (i - h * 3600) / 60;
-                tvCountdown.setText(h + ":" + k + ":" + j--);
-                handler.postDelayed(this, 1000);
-                if (j == 0) {
-                    j = 59;
-                }
-                if (i==0){
-                    tvCongratulation.setText("恭喜你完成挑战");
-                }
-            }
-          //  handler.postDelayed(this, 1000);
-        }
-    };
 
     @Override
     public void onBackPressed() {

@@ -1,37 +1,21 @@
 package com.example.administrator.free.ActivityPage;
 
-import android.app.Activity;
-import android.app.AlertDialog;
-import android.app.DatePickerDialog;
-import android.app.Dialog;
-import android.app.TimePickerDialog;
 import android.app.admin.DevicePolicyManager;
 import android.content.Intent;
 import android.graphics.Color;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Gravity;
-import android.view.KeyEvent;
-import android.view.Menu;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.TextView;
-import android.widget.TimePicker;
 
-import com.example.administrator.free.DataBaseRelated.LockScreen;
 import com.example.administrator.free.R;
-import com.example.administrator.free.ToolsHelper.DeviceAdminReceiverHelper;
+import com.example.administrator.free.ReceiverHelper.DeviceAdminReceiverHelper;
 import com.example.administrator.free.ToolsHelper.FlagHelper;
 import com.example.administrator.free.ToolsHelper.TimePickerHelper;
-
-import org.litepal.tablemanager.typechange.BlobOrm;
-
-import java.util.Calendar;
 
 public class LockScreenActivity extends AppCompatActivity implements View.OnClickListener {
     public static int mHourStart=-1, mMinuteStart=-1,mHourEnd=-1,mMinuteEnd=-1;
@@ -54,9 +38,9 @@ public class LockScreenActivity extends AppCompatActivity implements View.OnClic
         layoutParams.width = 1000;
         layoutParams.height = 1500;
         layoutParams.gravity = Gravity.CENTER;
-
-        layoutParams.alpha = 0.8f;                       //透明度
+        layoutParams.alpha = 0.8f;
         window.setAttributes(layoutParams);
+
         btnEnd.setOnClickListener(LockScreenActivity.this);
         btnStart.setOnClickListener(LockScreenActivity.this);
         btnOnStart.setOnClickListener(LockScreenActivity.this);
@@ -102,6 +86,16 @@ public class LockScreenActivity extends AppCompatActivity implements View.OnClic
                     public void onMinutePicked(int minute) {
                         mMinuteStart = minute;
                         startDisplay.setText("  " + String.valueOf(mHourStart) + ":" + mMinuteStart);
+                        startDisplay.setTextColor(Color.parseColor("#808080"));
+                        if (mHourEnd!=-1){
+                            if (mHourStart > mHourEnd || (mHourEnd == mHourStart && mMinuteStart > mMinuteEnd)) {
+                                startDisplay.setText("  " + String.valueOf(mHourStart) + ":" + mMinuteStart + "   开始时间应小于结束时间，请重新选择");
+                                startDisplay.setTextColor(Color.parseColor("#ff0000"));
+                            } else {
+                                endDisplay.setText("  " + String.valueOf(mHourEnd) + ":" + mMinuteEnd);
+                                endDisplay.setTextColor(Color.parseColor("#808080"));
+                            }
+                        }
                     }
 
                 });
@@ -124,6 +118,8 @@ public class LockScreenActivity extends AppCompatActivity implements View.OnClic
                         } else {
                             endDisplay.setText("  " + String.valueOf(mHourEnd) + ":" + mMinuteEnd);
                             endDisplay.setTextColor(Color.parseColor("#808080"));
+                            startDisplay.setText("  " + String.valueOf(mHourStart) + ":" + mMinuteStart);
+                            startDisplay.setTextColor(Color.parseColor("#808080"));
                         }
 
                     }
