@@ -27,6 +27,7 @@ import com.example.administrator.free.Fragment.BlankFragment3;
 import com.example.administrator.free.Fragment.BlankFragment4;
 import com.example.administrator.free.R;
 import com.example.administrator.free.ReceiverHelper.ScreenBroadcastReceiver;
+import com.example.administrator.free.ServiceHelper.MonitorService;
 
 import org.litepal.LitePal;
 
@@ -49,12 +50,12 @@ public class MainActivity extends AppCompatActivity implements OnCheckedChangeLi
         setContentView(R.layout.activity_main);
         Toolbar toolbar=(Toolbar) findViewById(R.id.toolBar);
         setSupportActionBar(toolbar);
-        InitView();                          //初始化控件
-        InitViewPager();                     //初始化pageView和fragment
-//        ScreenBroadcastReceiver.startScreenBroadCastReceiver();
-        startScreenBroadCastReceiver();      //注册监控屏幕的广播
-        LitePal.getDatabase();               //创建数据库
-
+        InitView();                                 //初始化控件
+        InitViewPager();                            //初始化pageView和fragment
+        LitePal.getDatabase();                      //创建数据库
+        MonitorService.context=MainActivity.this;   //开启服务用于广播监听
+        Intent intentService=new Intent(MainActivity.this,MonitorService.class);
+        startService(intentService);
     }
 
     private void InitView() {
@@ -214,14 +215,6 @@ public class MainActivity extends AppCompatActivity implements OnCheckedChangeLi
              }
          }
         return super.onPrepareOptionsPanel(view, menu);
-    }
-
-    private void startScreenBroadCastReceiver() {
-        IntentFilter filter=new IntentFilter();
-        filter.addAction(Intent.ACTION_SCREEN_OFF);
-        filter.addAction(Intent.ACTION_SCREEN_ON);
-        filter.addAction(Intent.ACTION_USER_PRESENT);
-        this.registerReceiver(screenBroadcastReceiver,filter);
     }
 
     @Override
