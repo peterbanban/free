@@ -15,6 +15,7 @@ import android.support.v7.view.menu.MenuBuilder;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.SurfaceHolder;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RadioButton;
@@ -207,7 +208,7 @@ public class MainActivity extends AppCompatActivity implements OnCheckedChangeLi
                  try {
                      //method是反射包中的类，提供关于类和接口上的单独的某个方法
                      Method method=menu.getClass().getDeclaredMethod("setOptionalIconsVisible",Boolean.TYPE);
-                     method.setAccessible(true);  //设置是否允许访问
+                     method.setAccessible(true);  //设置是许访问
                      method.invoke(menu,true);  //调用指定对象的底层方法并设置为true
                  } catch (Exception e) {
                      e.printStackTrace();

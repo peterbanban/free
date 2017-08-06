@@ -71,7 +71,6 @@ public class BlankFragment4 extends Fragment {
 
         //从fragment跳转到activity
         return view;
-
     }
 
     private void dataInit() {
